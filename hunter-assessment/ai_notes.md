@@ -4,7 +4,7 @@ Alert received: --create-docroot. It’s deprecated. I was still allowed to run 
 
 ddev drush site: install demo_umami --account-name=admin --account-pass=admin1 -y (showing the password on purpose for interview purposes)
 
-//2. Error received after running drush status:
+//2. Error received after running ddev drush:
 
     Prompt in Copilot: I'm encountering this error after running ddev drush:
     PHP Fatal error:  Uncaught Error: Call to undefined method Drush\Application::addCommand() in /var/www/html/vendor/consolidation/robo/src/Robo.php:558
