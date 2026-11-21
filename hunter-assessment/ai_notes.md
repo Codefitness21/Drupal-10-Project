@@ -60,3 +60,9 @@ This fixed the error but before continuing, I prompted Copilot to check that the
     1. Manage → Configuration → System → Basic site settings
 
 Verified myself- if I want the site information, remove the name at the end of site.name.
+
+//4. Prompt with Copilot:
+As my thinking partner, assist me with adding drupal/admin_toolbar and drupal/pathauto with Composer by stepping it through conceptually.
+
+Response:
+Sure—conceptually, this has two separate stages: Composer downloads the module code, then Drupal enables the modules: ddev composer require drupal/admin_toolbar drupal/pathauto
