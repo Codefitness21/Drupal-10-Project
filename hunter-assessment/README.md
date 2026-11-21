@@ -212,3 +212,5 @@ yaml:unset:key (y:unset:key) Unset a specific key in a YAML file.
 yaml:update:key (y:update:key) Update a specific key in a YAML file.  
 yaml:update:value Update the value for a specific key in a YAML file.  
 (y:update:value)
+
+8. Admin setup. Create a user with the Editor role. Set the site name to your full name in the admin UI, then confirm it with ddev drush config:get system.site name. If I wanted to the site information it would be that command line without name: ddev drush config:get system.site

@@ -2,7 +2,7 @@
 
 Alert received: --create-docroot. It’s deprecated. I was still allowed to run ddev start; I was just alerted that the command-line flag was deprecated. Based on a quick google search, the newer Drupal 11 version, the docroot is created for you.
 
-ddev drush site: install demo_umami --account-name=admin --account-pass=admin1 -y (showing the password on purpose for interview purposes)
+ddev drush site: install demo_umami --account-name=admin --account-pass=<my password> -y
 
 //2. Error received after running ddev drush:
 
@@ -51,12 +51,12 @@ This fixed the error but before continuing, I prompted Copilot to check that the
 
 //3. Locating the system.site name in the Umami demo site:
 
-Under Edit the navigation bar, I was able to create the editor role on my own and save it witout any issue. I wasn't sure where to locate system.site name.
+    Prompt in ChatGPT: Within the umami demo site, point me in the direction of creating a user with the editor role and the system.site name:
 
-    Prompt in ChatGPT: Within the Umami demo site, point me in the direction of the system.site name:
+    Repsonse for user:
+    1. In the administration toolbar, go to Manage → People → Add user.
 
-    Repsonse:
-    Here's where to go:
-    1. Open the Umami demo site and log in with an administrator account.
-    2. Navigate to Configuration → System → Basic site settings.
-    3. Look for the Site name field.
+    Repsonse for site:
+    1. Manage → Configuration → System → Basic site settings
+
+Verified myself- if I want the site information, remove the name at the end of site.name.
