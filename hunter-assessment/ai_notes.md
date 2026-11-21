@@ -2,8 +2,6 @@
 
 Alert received: --create-docroot. It’s deprecated. I was still allowed to run ddev start; I was just alerted that the command-line flag was deprecated. Based on a quick google search, the newer Drupal 11 version, the docroot is created for you.
 
-ddev drush site: install demo_umami --account-name=admin --account-pass=<my password> -y
-
 //2. Error received after running ddev drush:
 
     Prompt in Copilot: I'm encountering this error after running ddev drush:
