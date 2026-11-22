@@ -1,0 +1,20 @@
+<?php 
+
+function hunter_assessment_update_hello_hunter(&$sandbox) {
+  // Example of updating some content.
+  $node = \Drupal\node\Entity\Node::load(123);
+  $node->setTitle('Hunter Assessment');
+  $node->save();
+  $result = t('Node %nid saved', [
+    '%nid' => $node->id(),
+  ]);
+  // Example of updating some config.
+  if (\Drupal::moduleHandler()->moduleExists('taxonomy')) {
+    // Update the dependencies of all Vocabulary configuration entities.
+    \Drupal::classResolver(\Drupal\Core\Config\Entity\ConfigEntityUpdater::class)->update($sandbox, 'taxonomy_vocabulary');
+  }
+  return $result;
+}
+
+
+

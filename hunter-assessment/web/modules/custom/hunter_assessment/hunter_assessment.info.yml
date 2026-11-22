@@ -1,0 +1,5 @@
+name: Hunter Assessment
+type: module
+description: Take home assessment using the Umami demo profile as the base.
+core_version_requirement: ^10
+package: Custom
