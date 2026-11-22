@@ -213,4 +213,12 @@ yaml:update:key (y:update:key) Update a specific key in a YAML file.
 yaml:update:value Update the value for a specific key in a YAML file.  
 (y:update:value)
 
-8. Admin setup. Create a user with the Editor role. Set the site name to your full name in the admin UI, then confirm it with ddev drush config:get system.site name. If I wanted to the site information it would be that command line without name: ddev drush config:get system.site
+8. Admin setup. Create a user with the Editor role. Set the site name to your full name in the admin UI, then confirm it with ddev drush config:get system.site name.
+
+What I learend was that if I wanted to the site information it would be that command line without name: ddev drush config:get system.site
+
+9. Contrib modules. Add drupal/admin_toolbar and drupal/pathauto with
+   Composer, then enable both with ddev drush en. Do not copy code by hand.
+
+10. Custom module with an update hook. Create a module named
+    hunter_assessment that includes an update hook to append “ - Hello Hunter” to every Umami node in a category, using Recipe category “Dessert” as the example.

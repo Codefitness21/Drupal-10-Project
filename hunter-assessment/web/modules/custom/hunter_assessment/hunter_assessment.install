@@ -1,20 +1,59 @@
-<?php 
+<?php
 
-function hunter_assessment_update_hello_hunter(&$sandbox) {
-  // Example of updating some content.
-  $node = \Drupal\node\Entity\Node::load(123);
-  $node->setTitle('Hunter Assessment');
-  $node->save();
-  $result = t('Node %nid saved', [
-    '%nid' => $node->id(),
+/**
+ * Append a suffix to recipes in the Desserts category.
+ */
+function hunter_assessment_update_10002() {
+  $category_name = 'Desserts';
+  $suffix = ' - Hello Hunter';
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $terms = $term_storage->loadByProperties([
+    'vid' => 'recipe_category',
+    'name' => $category_name,
   ]);
-  // Example of updating some config.
-  if (\Drupal::moduleHandler()->moduleExists('taxonomy')) {
-    // Update the dependencies of all Vocabulary configuration entities.
-    \Drupal::classResolver(\Drupal\Core\Config\Entity\ConfigEntityUpdater::class)->update($sandbox, 'taxonomy_vocabulary');
+  $term = reset($terms);
+
+  if (!$term) {
+    return sprintf(
+      'No "%s" term was found in the Recipe category vocabulary; no recipe titles were changed.',
+      $category_name
+    );
   }
-  return $result;
+
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $nids = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'recipe')
+    ->condition('field_recipe_category.target_id', $term->id())
+    ->execute();
+
+  $updated = 0;
+  foreach ($node_storage->loadMultiple($nids) as $node) {
+    if (!($node instanceof \Drupal\node\NodeInterface)) {
+      throw new \UnexpectedValueException('Node storage returned a non-node entity.');
+    }
+
+    $changed = FALSE;
+    foreach (array_keys($node->getTranslationLanguages()) as $langcode) {
+      $translation = $node->getTranslation($langcode);
+      $title = $translation->getTitle();
+      if (!str_ends_with($title, $suffix)) {
+        $translation->setTitle($title . $suffix);
+        $changed = TRUE;
+      }
+    }
+
+    if ($changed) {
+      $node->save();
+      $updated++;
+    }
+  }
+
+  return sprintf(
+    'Appended "%s" to %d recipe(s) in the "%s" category.',
+    $suffix,
+    $updated,
+    $category_name
+  );
 }
-
-
-
