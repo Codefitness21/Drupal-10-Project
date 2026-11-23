@@ -226,3 +226,9 @@ yaml:update:value Update the value for a specific key in a YAML file.
 
 11. Views. Build a page at /articles that lists published Umami Article nodes in a
     table with title, tags and created date. Show 10 items per page and add an exposed filter on the Tags field.
+
+12. Bootstrap Barrio theme. Install the Bootstrap Barrio theme
+    (drupal/bootstrap_barrio) with Composer, create a subtheme named
+    hunter_barrio, and set it as the default theme. Style the Views table with
+    Bootstrap classes, including table-striped and table-responsive. Add one
+    custom CSS rule in the subtheme.
