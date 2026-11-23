@@ -33,7 +33,8 @@ Alert received: --create-docroot. It’s deprecated. I was still allowed to run 
 
 What I learned from this error:
 
-    It's Response: There’s a Drush/Robo dependency incompatibility:
+    It's Response:
+    There’s a Drush/Robo dependency incompatibility:
     Drush: 13.8.1
     Robo:  5.2.3
     Symfony Console: 6.4.50
@@ -52,7 +53,8 @@ This fixed the error but before continuing, I prompted Copilot to check that the
 Step 1:
 //3. Locating the system.site name in the Umami demo site:
 
-    Prompt in ChatGPT: Within the umami demo site, point me in the direction of creating a user with the editor role and the system.site name:
+    Prompt in ChatGPT:
+    "Within the umami demo site, point me in the direction of creating a user with the editor role and the system.site name":
 
     Repsonse for user:
     1. In the administration toolbar, go to Manage → People → Add user.
@@ -65,7 +67,7 @@ Verified myself- if I want the site information, remove the name at the end of s
 Step 2:
 //4. Prompt with Copilot:
 
-    As my thinking partner, assist me with adding drupal/admin_toolbar and drupal/pathauto with Composer by stepping through it conceptually.
+    "As my thinking partner, assist me with adding drupal/admin_toolbar and drupal/pathauto with Composer by stepping through it conceptually".
 
     It's Response:
 
@@ -79,23 +81,31 @@ Verified myself:
 
     "I've created the custom hunter_assessment module. What additional file is needed to house the hook code structure?"
 
-    Once the files were in place, I asked Copilot to "Check the files created in the custom hunter assessment folder that they were implemented correctly".
+    Once the files were in place, I asked Copilot to:
+
+    "Check the files created in the custom hunter assessment folder that they were implemented correctly".
 
 They were implemented correctly.
 
 //7. Preferred prompt from Copilot which was also run in ChatGPT and Claude:
 
-    I'm working in Drupal 10 with the Umami demo profile, running locally in DDEV. I have a custom module called hunter_assessment. Write an update hook to append “ - Hello Hunter” to every Umami node in a category, using the Recipe category “Dessert” as the example. It will run in the hunter_assessment.install file. Confirm that it worked and explain each section so that I can walk the interviewer through it.
+    "I'm working in Drupal 10 with the Umami demo profile, running locally in DDEV. I have a custom module called hunter_assessment. Write an update hook to append “ - Hello Hunter” to every Umami node in a category, using the Recipe category “Dessert” as the example. It will run in the hunter_assessment.install file. Confirm that it worked and explain each section so that I can walk the interviewer through it."
 
 My Explanation for why I chose the AI tool:
 This prompt was run in Copilot, Claude, and ChatGPT. I wanted to compare their repsonses and see how the outputs differed. ChatGPT provided a more simplified explanation because it wasn't connected to my project context so I believed the response was incomplete. Claude provided a very in depth explanation, which was appreciated but appeared excessive. In contrast I selected Copilot's repsonse becuase it had direct access to my project files, allowing it asess what was needed more effectively. It analyzed what was needed as opposed to providing the code immediately, which led me to reject Chat and Claude.
 
 //8. Prompt from Copilot related to the code error found in the hunter_assessment file:
 
-    Why am I receiving an error on lines 34 and 35 in the hunter_assessment.install file? On line 34, The error states: Undefined method 'getTranslationLanguages'. Call to unknown method: Drupal\Core\Entity\EntityInterface::getTranslationLanguages()
-    On line 35, Undefined method 'getTranslationLanguage'. Call to unknown method: Drupal\Core\Entity\EntityInterface::getTranslationLanguage()
+    "Why am I receiving an error on lines 34 and 35 in the hunter_assessment.install file? On line 34, The error states: Undefined method 'getTranslationLanguages'. Call to unknown method: Drupal\Core\Entity\EntityInterface::getTranslationLanguages()
+    On line 35, Undefined method 'getTranslationLanguage'. Call to unknown method: Drupal\Core\Entity\EntityInterface::getTranslationLanguage()"
 
     It's Response:
     They’re two different issues in hunter_assessment.install:
     Line 34 — getTranslationLanguages() is a valid Drupal translation method. The editor warns because loadMultiple() is inferred to return generic EntityInterface objects, which doesn’t declare that method. At runtime, the loaded recipe nodes support it. Narrow the type first with a NodeInterface check.
     Line 35 — getTranslationLanguage() is a real typo: Drupal has no method by that name. Use getTranslation($langcode). If execution reaches this call, it would cause a runtime fatal error.
+
+//9. Prompt from Copilot
+
+"I want to make sure I’m approaching this the right way.
+
+Based on the requirements, I need to create a `/articles` page using Drupal Views that displays published Umami Article nodes in a table with the title, tags, and created date, limits the results to 10 per page, and includes an exposed filter for Tags."
