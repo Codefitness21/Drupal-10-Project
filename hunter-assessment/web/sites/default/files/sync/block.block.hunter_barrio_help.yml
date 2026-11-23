@@ -1,0 +1,22 @@
+uuid: cb973934-3b46-4159-8fb1-ea0b7f90324a
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - hunter_barrio
+_core:
+  default_config_hash: Zwl-QgYS5CeSzDZ6_e265jNaHTq6PRorHgDNIscqMGg
+id: hunter_barrio_help
+theme: hunter_barrio
+region: highlighted
+weight: -2
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

@@ -20,7 +20,8 @@ function hunter_assessment_update_10002() {
       $category_name
     );
   }
-
+  
+//Drupal API
   $node_storage = \Drupal::entityTypeManager()->getStorage('node');
   $nids = $node_storage->getQuery()
     ->accessCheck(FALSE)

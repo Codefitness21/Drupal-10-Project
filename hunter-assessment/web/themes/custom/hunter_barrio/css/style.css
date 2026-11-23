@@ -2,3 +2,26 @@
  * @file
  * Subtheme specific CSS.
  */
+body.path-umami-articles #navbar-main {
+    background-color: #28c31d;
+}
+
+body.path-umami-articles .table {
+    background-color: #c8ebc6;
+}
+
+body.path-articles #navbar-main {
+    background-color: #c31db8;
+}
+
+body.path-articles #main-wrapper {
+    background-color: #d3aad1;
+}
+
+body.path-recipes #navbar-main {
+    background-color: #1900ff;
+}
+
+body.path-recipes #main-wrapper {
+    background-color: #8bb0f9;
+}

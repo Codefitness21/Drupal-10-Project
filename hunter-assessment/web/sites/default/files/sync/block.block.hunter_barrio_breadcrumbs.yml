@@ -1,0 +1,22 @@
+uuid: d03359d5-f2b7-49a5-a28c-09f3881e0458
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hunter_barrio
+_core:
+  default_config_hash: e9tHnZkOUaN2mMhrlQJ92TVMr8vdmYEifc-N8NRVLEQ
+id: hunter_barrio_breadcrumbs
+theme: hunter_barrio
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

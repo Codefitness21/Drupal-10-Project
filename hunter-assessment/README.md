@@ -1,22 +1,26 @@
-Steps run for the project:
+A. Steps run for the project:
 
 1. Create a Drupal 10 project: composer create-project drupal/recommended-
    project:^10 hunter-assessment.
 
 2. Configure and start DDEV: ddev config --project-type=drupal10 --
-   docroot=web (--create-docroot is deprecated)
+   docroot=web
+
+   (--create-docroot is deprecated)
 
 3. Ran ddev start, then ddev composer install.
 
 4. Install Umami: ddev drush site:install demo_umami --account-
-   name=admin --account-pass=<my password> -y
+   name=<name> --account-pass=<my password> -y
 
 5. I was able to log into the site successfully.
 
-6. I ran ddev drush. Received an error noted in the ai_notes.md file.
+6. I ran ddev drush. Received an error that's noted in the ai_notes.md file.
 
 7. Error was corrected. I ran ddev drush again and received it's output:
    Drush Commandline Tool 13.8.1.0
+
+B. Output of drush status:
 
 Run `drush help [command]` to view command-specific help. Run `drush topic` to read even more documentation.
 
@@ -213,22 +217,43 @@ yaml:update:key (y:update:key) Update a specific key in a YAML file.
 yaml:update:value Update the value for a specific key in a YAML file.  
 (y:update:value)
 
-8. Admin setup. Create a user with the Editor role. Set the site name to your full name
-   in the admin UI, then confirm it with ddev drush config:get system.site name.
+Drupal version : 10.6.22  
+Site URI : https://hunter-assessment.ddev.site  
+DB driver : mysql  
+DB hostname : db  
+DB port : 3306  
+DB username : db  
+DB name : db  
+Database : Connected  
+Drupal bootstrap : Successful  
+Default theme : hunter_barrio  
+Admin theme : claro  
+PHP binary : /usr/bin/php8.4  
+PHP config : /etc/php/8.4/cli/php.ini  
+PHP OS : Linux  
+PHP version : 8.4.27  
+Drush script : /var/www/html/vendor/bin/drush.php  
+Drush version : 13.8.1.0  
+Drush temp : /tmp  
+Drush configs : /var/www/html/vendor/drush/drush/drush.yml
+Install profile : demo_umami  
+Drupal root : /var/www/html/web  
+Site path : sites/default  
+Files, Public : sites/default/files  
+Files, Temp : /tmp  
+Drupal config : sites/default/files/sync
 
-   What I learned was that if I wanted to the site information it would be that command line without name: ddev drush config:get system.site
+C. Short explanation of how your update hook works and why Drupal runs it
+only once:
+My update hook is a function that Drupal runs to make updates or changes. The number positioned at the end of the function name tracks which updates were applied and if that update was completed, which is why it runs once. The reason why my function name shows 10002 is because 10001 already ran with Desert (singular), which appeared as a tag and not the recipe category that's in the demo site. The update hook includes the suffix and the category name that the suffix will append to. The entity type manager for term storage is used to search categories and locate the taxonomy term that exists. The entity type manager for node storage searches for node content. Drupal's API uses the query to search for the nodes specific to the term. The foreach then loops through the nodes checking for the correct title to append it to.
 
-9. Contrib modules. Add drupal/admin_toolbar and drupal/pathauto with
-   Composer, then enable both with ddev drush en. Do not copy code by hand.
+D. With more time, three improvements I would make would be:
 
-10. Custom module with an update hook. Create a module named
-    hunter_assessment that includes an update hook to append “ - Hello Hunter” to every Umami node in a category, using Recipe category “Dessert” as the example.
+1. I would improve the styling of the home, articles, umami-articles, and recipe site  
+   as it pertains to the body of the page. For example, the search bar and home link are currently in the body of the page. I would remove the home link since it’s already in the navigation bar (no need to duplicate it). In addition, I would position the search bar in the navigation bar. From there, I would center the container in the body of the page that holds the articles and recipes, and use flex grid for the purposes of adding to the collection of articles and recipes. I would also add spacing between the exposed table filters.
 
-11. Views. Build a page at /articles that lists published Umami Article nodes in a
-    table with title, tags and created date. Show 10 items per page and add an exposed filter on the Tags field.
+2. With additional time, I would dig deeper into the hook implementation to further
+   understand the logic and reasoning behind the code beyond my psudeocode, which helped a bit with stepping through what was being asked.
 
-12. Bootstrap Barrio theme. Install the Bootstrap Barrio theme
-    (drupal/bootstrap_barrio) with Composer, create a subtheme named
-    hunter_barrio, and set it as the default theme. Style the Views table with
-    Bootstrap classes, including table-striped and table-responsive. Add one
-    custom CSS rule in the subtheme.
+3. With additional time, I would have tried to append a different suffix onto
+   other categories. Observations made would be if the message overides the original -Hello Hunter, or did it save to the intended recipe thus displaying two different suffixes. I would also investigate why my home, articles, and recipe pages are in spanish, resolving that issue so that the language is in English.

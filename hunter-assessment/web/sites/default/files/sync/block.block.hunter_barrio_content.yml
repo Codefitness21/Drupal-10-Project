@@ -1,0 +1,22 @@
+uuid: edc39161-2f3d-4014-bcc5-285a6906dd2b
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hunter_barrio
+_core:
+  default_config_hash: N_7J_cooNPKInXZQVuhpbVLM0Q43QuCy4nkEIhvsiRQ
+id: hunter_barrio_content
+theme: hunter_barrio
+region: content
+weight: -3
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }
